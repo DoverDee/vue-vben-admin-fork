@@ -127,7 +127,7 @@ export const useAccountStore = defineStore({
       const userInfo = await getAccountInfo();
       const { roles = [] } = userInfo;
       if (isArray(roles)) {
-        const roleList = roles.map((item) => item.value) as RoleEnum[];
+        const roleList = roles.map((item) => item.code) as RoleEnum[];
         this.setRoleList(roleList);
       } else {
         userInfo.roles = [];

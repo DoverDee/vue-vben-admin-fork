@@ -4,7 +4,7 @@ import { resultError, resultSuccess, getRequestToken, requestParams } from '../_
 export function createFakeUserList() {
   return [
     {
-      userId: '1',
+      id: '1',
       username: 'vben',
       realName: 'Vben Admin',
       avatar: '',
@@ -20,7 +20,7 @@ export function createFakeUserList() {
       ],
     },
     {
-      userId: '2',
+      id: '2',
       username: 'test',
       password: '123456',
       realName: 'test user',
@@ -50,17 +50,17 @@ export default [
     timeout: 200,
     method: 'post',
     response: ({ body }) => {
-      const { username, password } = body;
+      const { user, password } = body;
       const checkUser = createFakeUserList().find(
-        (item) => item.username === username && password === item.password,
+        (item) => item.username === user && password === item.password,
       );
       if (!checkUser) {
         return resultError('Incorrect account or password！');
       }
-      const { userId, username: _username, token, realName, desc, roles } = checkUser;
+      const { id, username: _username, token, realName, desc, roles } = checkUser;
       return resultSuccess({
+        id,
         roles,
-        userId,
         username: _username,
         token,
         realName,
@@ -92,7 +92,7 @@ export default [
       if (!checkUser) {
         return resultError('Invalid token!');
       }
-      const codeList = fakeCodeList[checkUser.userId];
+      const codeList = fakeCodeList[checkUser.id];
 
       return resultSuccess(codeList);
     },

@@ -3,8 +3,8 @@ import { resultSuccess, resultError } from '../_util';
 import { ResultEnum } from '../../src/enums/httpEnum';
 
 const userInfo = {
+  id: '00000001',
   name: 'Vben',
-  userid: '00000001',
   email: 'test@gmail.com',
   signature: '海纳百川，有容乃大',
   introduction: '微笑着，努力着，欣赏着',
