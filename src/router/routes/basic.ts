@@ -71,3 +71,27 @@ export const ERROR_LOG_ROUTE: AppRouteRecordRaw = {
     },
   ],
 };
+
+export const ACCOUNT_SETTING: AppRouteRecordRaw = {
+  path: '/my',
+  name: 'My',
+  component: LAYOUT,
+  redirect: '/my/index',
+  meta: {
+    title: t('routes.basic.accountInfo'),
+    hideChildrenInMenu: true,
+    icon: 'simple-icons:about-dot-me',
+  },
+  children: [
+    {
+      path: 'index',
+      name: 'MyPage',
+      component: () => import('@/views/sys/login/setting/index.vue'),
+      meta: {
+        hideMenu: true,
+        title: t('routes.basic.accountInfo'),
+        ignoreKeepAlive: true,
+      },
+    },
+  ],
+};

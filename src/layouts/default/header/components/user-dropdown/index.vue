@@ -25,6 +25,11 @@
           icon="ant-design:swap-outlined"
         />
         <MenuItem
+          key="info"
+          :text="t('layout.header.dropdownItemAccount')"
+          icon="mingcute:user-info-line"
+        />
+        <MenuItem
           v-if="getUseLockPage"
           key="lock"
           :text="t('layout.header.tooltipLock')"
@@ -55,8 +60,11 @@
   import { propTypes } from '@/utils/propTypes';
   import { openWindow } from '@/utils';
   import { createAsyncComponent } from '@/utils/factory/createAsyncComponent';
+  import { getImageUrl } from '@/utils/http/axios/helper';
+  import { PageEnum } from '@/enums/pageEnum';
+  import { router } from '@/router';
 
-  type MenuEvent = 'logout' | 'doc' | 'lock' | 'api';
+  type MenuEvent = 'logout' | 'doc' | 'lock' | 'info' | 'api';
 
   const MenuItem = createAsyncComponent(() => import('./DropMenuItem.vue'));
   const LockAction = createAsyncComponent(() => import('../lock/LockModal.vue'));
@@ -75,7 +83,7 @@
 
   const getUserInfo = computed(() => {
     const { realName = '', avatar, desc } = userStore.getAccountInfo || {};
-    return { realName, avatar: avatar || headerImg, desc };
+    return { realName, avatar: getImageUrl(avatar) || headerImg, desc };
   });
 
   const [register, { openModal }] = useModal();
@@ -99,6 +107,11 @@
     openWindow(DOC_URL);
   }
 
+  // open info
+  function openInfo() {
+    router.push(PageEnum.ACCOUNT_SETTING);
+  }
+
   function handleMenuClick(e: MenuInfo) {
     switch (e.key as MenuEvent) {
       case 'logout':
@@ -106,6 +119,9 @@
         break;
       case 'doc':
         openDoc();
+        break;
+      case 'info':
+        openInfo();
         break;
       case 'lock':
         handleLock();
