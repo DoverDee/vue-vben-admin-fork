@@ -22,7 +22,7 @@ const iframe: AppRouteModule = {
       name: 'Doc',
       component: IFrame,
       meta: {
-        frameSrc: 'https://doc.vvbin.cn/',
+        frameSrc: 'https://gitee.com/DoverLee/access-control-front/',
         title: t('routes.demo.iframe.doc'),
       },
     },
@@ -36,7 +36,7 @@ const iframe: AppRouteModule = {
       },
     },
     {
-      path: 'https://doc.vvbin.cn/',
+      path: 'https://gitee.com/DoverLee/access-control-front/',
       name: 'DocExternal',
       component: IFrame,
       meta: {

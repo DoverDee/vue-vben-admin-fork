@@ -51,7 +51,7 @@ jobs:
   #         METHOD: sftp
   #         PORT: ${{ secrets.FTP_PORT }}
   #         LOCAL_DIR: dist
-  #         REMOTE_DIR: /srv/www/vben-admin
+  #         REMOTE_DIR: /srv/www/access-control
   #         ARGS: --delete --verbose --parallel=80
 
   push-to-gh-pages:
@@ -123,4 +123,4 @@ jobs:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: ./dist
-          CNAME: vben.vvbin.cn
+          CNAME: gitee.com/DoverLee/access-control-front

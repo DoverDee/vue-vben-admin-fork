@@ -10,7 +10,7 @@ export const step1Schemas: FormSchema[] = [
     componentProps: {
       options: [
         {
-          label: 'anncwb@126.com',
+          label: 'DoverDee@126.com',
           value: '1',
         },
       ],

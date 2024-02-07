@@ -87,7 +87,7 @@
   import { type Nullable } from '@vben/types';
   import { QRCode } from 'ant-design-vue';
 
-  const qrCodeUrl = 'https://www.vvbin.cn';
+  const qrCodeUrl = 'https://gitee.com/DoverLee/access-control-front';
   const qrRef = ref<Nullable<QrCodeActionType>>(null);
   const qrDiyRef = ref<Nullable<QrCodeActionType>>(null);
   function download() {

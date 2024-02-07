@@ -1,19 +1,19 @@
 {
-  "name": "vben-admin",
+  "name": "access-control",
   "version": "2.10.1",
-  "homepage": "https://github.com/vbenjs/vue-vben-admin",
+  "homepage": "https://gitee.com/DoverLee/access-control-front",
   "bugs": {
-    "url": "https://github.com/vbenjs/vue-vben-admin/issues"
+    "url": "https://gitee.com/DoverLee/access-control-front/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vbenjs/vue-vben-admin.git"
+    "url": "git+https://gitee.com/DoverLee/access-control-front.git"
   },
   "license": "MIT",
   "author": {
-    "name": "vben",
-    "email": "anncwb@126.com",
-    "url": "https://github.com/anncwb"
+    "name": "doverlee",
+    "email": "doverlee@foxmail.com",
+    "url": "https://gitee.com/DoverLee"
   },
   "type": "module",
   "scripts": {

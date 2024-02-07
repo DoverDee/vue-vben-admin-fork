@@ -31,7 +31,7 @@
   }
   function handleDownloadByUrl() {
     downloadByUrl({
-      url: 'https://codeload.github.com/anncwb/vue-vben-admin-doc/zip/master',
+      url: 'https://codeload.github.com/DoverLee/access-control-front-doc/zip/master',
       target: '_self',
     });
 

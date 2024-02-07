@@ -1,6 +1,6 @@
 /**
  * Mock plugin for development and production.
- * https://github.com/anncwb/vite-plugin-mock
+ * https://github.com/DoverDee/vite-plugin-mock
  */
 import { viteMockServe } from 'vite-plugin-mock';
 

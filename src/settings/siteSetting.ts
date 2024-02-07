@@ -1,8 +1,8 @@
 // github repo url
-export const GITHUB_URL = 'https://github.com/anncwb/vue-vben-admin';
+export const GITHUB_URL = 'https://github.com/DoverLee/access-control-front';
 
-// vue-vben-admin-next-doc
-export const DOC_URL = 'https://doc.vvbin.cn/';
+// access-control-next-doc
+export const DOC_URL = 'https://gitee.com/DoverLee/access-control-front/';
 
 // site url
-export const SITE_URL = 'https://vben.vvbin.cn/';
+export const SITE_URL = 'https://gitee.com/DoverLee/access-control-front/';

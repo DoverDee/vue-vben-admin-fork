@@ -1,6 +1,6 @@
 /**
  *  Vite Plugin for fast creating SVG sprites.
- * https://github.com/anncwb/vite-plugin-svg-icons
+ * https://github.com/DoverDee/vite-plugin-svg-icons
  */
 
 import { resolve } from 'node:path';

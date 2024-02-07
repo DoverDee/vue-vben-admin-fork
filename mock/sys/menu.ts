@@ -221,11 +221,11 @@ const linkRoute = {
       name: 'Doc',
       meta: {
         title: 'routes.demo.iframe.doc',
-        frameSrc: 'https://doc.vvbin.cn/',
+        frameSrc: 'https://gitee.com/DoverLee/access-control-front/',
       },
     },
     {
-      path: 'https://doc.vvbin.cn/',
+      path: 'https://gitee.com/DoverLee/access-control-front/',
       name: 'DocExternal',
       component: 'LAYOUT',
       meta: {

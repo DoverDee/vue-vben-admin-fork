@@ -2,13 +2,13 @@
   "name": "@vben/vite-config",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://github.com/vbenjs/vue-vben-admin",
+  "homepage": "https://gitee.com/DoverLee/access-control-front",
   "bugs": {
-    "url": "https://github.com/vbenjs/vue-vben-admin/issues"
+    "url": "https://gitee.com/DoverLee/access-control-front/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vbenjs/vue-vben-admin.git",
+    "url": "git+https://gitee.com/DoverLee/access-control-front.git",
     "directory": "internal/vite-config"
   },
   "license": "MIT",

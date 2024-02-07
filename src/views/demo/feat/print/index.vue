@@ -29,8 +29,8 @@
   function imagePrint() {
     printJS({
       printable: [
-        'https://anncwb.github.io/anncwb/images/preview1.png',
-        'https://anncwb.github.io/anncwb/images/preview2.png',
+        'https://DoverDee.github.io/DoverDee/images/preview1.png',
+        'https://DoverDee.github.io/DoverDee/images/preview2.png',
       ],
       type: 'image',
       header: 'Multiple Images',

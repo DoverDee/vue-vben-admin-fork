@@ -1,6 +1,6 @@
-<div align="center"> <a href="https://github.com/anncwb/vue-vben-admin"> <img alt="VbenAdmin Logo" width="200" height="200" src="https://anncwb.github.io/anncwb/images/logo.png"> </a> <br> <br>
+<div align="center"> <a href="https://github.com/DoverLee/access-control-front"> <img alt="VbenAdmin Logo" width="200" height="200" src="https://DoverDee.github.io/DoverDee/images/logo.png"> </a> <br> <br>
 
-[![license](https://img.shields.io/github/license/anncwb/vue-vben-admin.svg)](LICENSE)
+[![license](https://img.shields.io/github/license/DoverLee/access-control-front.svg)](LICENSE)
 
 <h1>Vue vben admin</h1>
 </div>
@@ -9,7 +9,7 @@
 
 ## Introduction
 
-Vue Vben Admin is a free and open source middle platform/back-end template. Using the latest `vue3`, `vite4`, `TypeScript` and other mainstream technology, Vben is the out-of-the-box front-end solution for both production and learning purpose.
+Vue Access Control is a free and open source middle platform/back-end template. Using the latest `vue3`, `vite4`, `TypeScript` and other mainstream technology, Vben is the out-of-the-box front-end solution for both production and learning purpose.
 
 ## Features
 
@@ -23,28 +23,28 @@ Vue Vben Admin is a free and open source middle platform/back-end template. Usin
 
 ## Preview
 
-- [vue-vben-admin](https://vben.vvbin.cn/) - Full version (Chinese)
-- [vue-vben-admin-gh-pages](https://anncwb.github.io/vue-vben-admin/) - Full version (github hosted)
-- [vben-admin-thin-next](https://vben.vvbin.cn/thin/next/) - Simplified Version (Chinese)
-- [vben-admin-thin-gh-pages](https://anncwb.github.io/vben-admin-thin-next/) -Simplified Version (github hosted)
+- [access-control](https://gitee.com/DoverLee/access-control-front/) - Full version (Chinese)
+- [access-control-gh-pages](https://DoverDee.github.io/access-control/) - Full version (github hosted)
+- [access-control-thin-next](https://gitee.com/DoverLee/access-control-front/thin/next/) - Simplified Version (Chinese)
+- [access-control-thin-gh-pages](https://DoverDee.github.io/access-control-thin-next/) -Simplified Version (github hosted)
 
 Test account: vben/123456
 
 <p align="center">
-    <img alt="VbenAdmin Logo" width="100%" src="https://anncwb.github.io/anncwb/images/preview1.png">
-    <img alt="VbenAdmin Logo" width="100%" src="https://anncwb.github.io/anncwb/images/preview2.png">
-    <img alt="VbenAdmin Logo" width="100%" src="https://anncwb.github.io/anncwb/images/preview3.png">
+    <img alt="VbenAdmin Logo" width="100%" src="https://DoverDee.github.io/DoverDee/images/preview1.png">
+    <img alt="VbenAdmin Logo" width="100%" src="https://DoverDee.github.io/DoverDee/images/preview2.png">
+    <img alt="VbenAdmin Logo" width="100%" src="https://DoverDee.github.io/DoverDee/images/preview3.png">
 </p>
 
 ### Use Gitpod
 
 Open the project in Gitpod (free online dev environment for GitHub) and start coding immediately.
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/anncwb/vue-vben-admin)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/DoverLee/access-control-front)
 
 ## Documentation
 
-[Document](https://doc.vvbin.cn/)
+[Document](https://gitee.com/DoverLee/access-control-front/)
 
 ## Preparation
 
@@ -62,13 +62,13 @@ Open the project in Gitpod (free online dev environment for GitHub) and start co
 - Get the project code
 
 ```bash
-git clone https://github.com/anncwb/vue-vben-admin.git
+git clone https://github.com/DoverLee/access-control-front.git
 ```
 
 - Install dependencies
 
 ```bash
-cd vue-vben-admin
+cd access-control
 
 pnpm install
 
@@ -93,13 +93,13 @@ pnpm build
 #### build image
 
 ```bash
-docker build -t vue-vben-admin .
+docker build -t access-control .
 ```
 
 #### Use environment variables to achieve differentiated container deployment. Specify service endpoint by assigning `VG_BASE_URL`. In the following example, `http://localhost:3333` is used as the back-end service address and the container is mapped to port `6666`:
 
 ```bash
-docker run --name vue-vben-admin -d -p 6666:80  -e VG_BASE_URL=http://localhost:3333 vue-vben-admin
+docker run --name access-control -d -p 6666:80  -e VG_BASE_URL=http://localhost:3333 access-control
 ```
 
 Then you can navigate to `http://localhost:6666`
@@ -110,12 +110,12 @@ Then you can navigate to `http://localhost:6666`
 
 ## Project
 
-- [vue-vben-admin](https://github.com/anncwb/vue-vben-admin) - full version
-- [vue-vben-admin-thin-next](https://github.com/anncwb/vben-admin-thin-next) - Simplified version
+- [access-control](https://github.com/DoverLee/access-control-front) - full version
+- [access-control-thin-next](https://github.com/DoverDee/access-control-thin-next) - Simplified version
 
 ## How to contribute
 
-You are very welcome to join！[Raise an issue](https://github.com/anncwb/vue-vben-admin/issues/new/choose) or submit a Pull Request。
+You are very welcome to join！[Raise an issue](https://github.com/DoverLee/access-control-front/issues/new/choose) or submit a Pull Request。
 
 **Pull Request:**
 
@@ -147,10 +147,10 @@ You are very welcome to join！[Raise an issue](https://github.com/anncwb/vue-vb
 
 If these plugins are helpful to you, you can show support by leaving a star!
 
-- [vite-plugin-mock](https://github.com/anncwb/vite-plugin-mock) - Used for local and development environment data mock
-- [vite-plugin-html](https://github.com/anncwb/vite-plugin-html) - Used for html template conversion and compression
-- [vite-plugin-compression](https://github.com/anncwb/vite-plugin-compression) - Used to pack input .gz|.brotil files
-- [vite-plugin-svg-icons](https://github.com/anncwb/vite-plugin-svg-icons) - Used to quickly generate svg sprite
+- [vite-plugin-mock](https://github.com/DoverDee/vite-plugin-mock) - Used for local and development environment data mock
+- [vite-plugin-html](https://github.com/DoverDee/vite-plugin-html) - Used for html template conversion and compression
+- [vite-plugin-compression](https://github.com/DoverDee/vite-plugin-compression) - Used to pack input .gz|.brotil files
+- [vite-plugin-svg-icons](https://github.com/DoverDee/vite-plugin-svg-icons) - Used to quickly generate svg sprite
 
 ## Browser support
 
@@ -164,7 +164,7 @@ Support modern browsers, doesn't include IE
 
 ## Maintainer
 
-[@Vben](https://github.com/anncwb) [@Jinmao](https://github.com/jinmao88)
+[@Vben](https://github.com/DoverDee) [@Jinmao](https://github.com/jinmao88)
 
 ## Thanks
 
@@ -172,7 +172,7 @@ Support modern browsers, doesn't include IE
 
 ## Star History Chart
 
-[![Star History Chart](https://api.star-history.com/svg?repos=vbenjs/vue-vben-admin&type=Date)](https://star-history.com/#vbenjs/vue-vben-admin&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=vbenjs/access-control&type=Date)](https://star-history.com/#vbenjs/access-control&Date)
 
 ## License
 

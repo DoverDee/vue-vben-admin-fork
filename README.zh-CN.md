@@ -1,6 +1,6 @@
-<div align="center"> <a href="https://github.com/anncwb/vue-vben-admin"> <img alt="VbenAdmin Logo" width="200" height="200" src="https://anncwb.github.io/anncwb/images/logo.png"> </a> <br> <br>
+<div align="center"> <a href="https://github.com/DoverLee/access-control-front"> <img alt="VbenAdmin Logo" width="200" height="200" src="https://DoverDee.github.io/DoverDee/images/logo.png"> </a> <br> <br>
 
-[![license](https://img.shields.io/github/license/anncwb/vue-vben-admin.svg)](LICENSE)
+[![license](https://img.shields.io/github/license/DoverLee/access-control-front.svg)](LICENSE)
 
 <h1>Vue vben admin</h1>
 </div>
@@ -9,7 +9,7 @@
 
 ## 简介
 
-Vue Vben Admin 是一个免费开源的中后台模版。使用了最新的`vue3`,`vite4`,`TypeScript`等主流技术开发，开箱即用的中后台前端解决方案，也可用于学习参考。
+Vue Access Control 是一个免费开源的中后台模版。使用了最新的`vue3`,`vite4`,`TypeScript`等主流技术开发，开箱即用的中后台前端解决方案，也可用于学习参考。
 
 ## 特性
 
@@ -23,28 +23,28 @@ Vue Vben Admin 是一个免费开源的中后台模版。使用了最新的`vue3
 
 ## 预览
 
-- [vue-vben-admin](https://vben.vvbin.cn/) - 完整版中文站点
-- [vue-vben-admin-gh-pages](https://anncwb.github.io/vue-vben-admin/) - 完整版 github 站点
-- [vben-admin-thin-next](https://vben.vvbin.cn/thin/next/) - 简化版中文站点
-- [vben-admin-thin-gh-pages](https://anncwb.github.io/vben-admin-thin-next/) - 简化版 github 站点
+- [access-control](https://gitee.com/DoverLee/access-control-front/) - 完整版中文站点
+- [access-control-gh-pages](https://DoverDee.github.io/access-control/) - 完整版 github 站点
+- [access-control-thin-next](https://gitee.com/DoverLee/access-control-front/thin/next/) - 简化版中文站点
+- [access-control-thin-gh-pages](https://DoverDee.github.io/access-control-thin-next/) - 简化版 github 站点
 
 测试账号: vben/123456
 
 <p align="center">
-    <img alt="VbenAdmin Logo" width="100%" src="https://anncwb.github.io/anncwb/images/preview1.png">
-    <img alt="VbenAdmin Logo" width="100%" src="https://anncwb.github.io/anncwb/images/preview2.png">
-    <img alt="VbenAdmin Logo" width="100%" src="https://anncwb.github.io/anncwb/images/preview3.png">
+    <img alt="VbenAdmin Logo" width="100%" src="https://DoverDee.github.io/DoverDee/images/preview1.png">
+    <img alt="VbenAdmin Logo" width="100%" src="https://DoverDee.github.io/DoverDee/images/preview2.png">
+    <img alt="VbenAdmin Logo" width="100%" src="https://DoverDee.github.io/DoverDee/images/preview3.png">
 </p>
 
 ### 使用 Gitpod
 
 在 Gitpod（适用于 GitHub 的免费在线开发环境）中打开项目，并立即开始编码.
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/anncwb/vue-vben-admin)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/DoverLee/access-control-front)
 
 ## 文档
 
-[文档地址](https://doc.vvbin.cn/)
+[文档地址](https://gitee.com/DoverLee/access-control-front/)
 
 ## 准备
 
@@ -62,13 +62,13 @@ Vue Vben Admin 是一个免费开源的中后台模版。使用了最新的`vue3
 - 获取项目代码
 
 ```bash
-git clone https://github.com/anncwb/vue-vben-admin.git
+git clone https://github.com/DoverLee/access-control-front.git
 ```
 
 - 安装依赖
 
 ```bash
-cd vue-vben-admin
+cd access-control
 
 pnpm install
 
@@ -93,13 +93,13 @@ pnpm build
 #### 构建镜像
 
 ```bash
-docker build -t vue-vben-admin .
+docker build -t access-control .
 ```
 
 #### 动态使用环境变量实现容器差异化部署,通过不同的 VG_BASE_URL 环境变量，指向不同的后端服务地址，下面例子使用 http://localhost:3333 作为后端服务地址，并且将容器映射到 6666 端口
 
 ```bash
-docker run --name vue-vben-admin -d -p 6666:80  -e VG_BASE_URL=http://localhost:3333 vue-vben-admin
+docker run --name access-control -d -p 6666:80  -e VG_BASE_URL=http://localhost:3333 access-control
 ```
 
 而后可以打开 http://localhost:6666 访问
@@ -110,12 +110,12 @@ docker run --name vue-vben-admin -d -p 6666:80  -e VG_BASE_URL=http://localhost:
 
 ## 项目地址
 
-- [vue-vben-admin](https://github.com/anncwb/vue-vben-admin) - 完整版
-- [vue-vben-admin-thin-next](https://github.com/anncwb/vben-admin-thin-next) - 简化版
+- [access-control](https://github.com/DoverLee/access-control-front) - 完整版
+- [access-control-thin-next](https://github.com/DoverDee/access-control-thin-next) - 简化版
 
 ## 如何贡献
 
-非常欢迎你的加入！[提一个 Issue](https://github.com/anncwb/vue-vben-admin/issues/new/choose) 或者提交一个 Pull Request。
+非常欢迎你的加入！[提一个 Issue](https://github.com/DoverLee/access-control-front/issues/new/choose) 或者提交一个 Pull Request。
 
 **Pull Request:**
 
@@ -157,10 +157,10 @@ docker run --name vue-vben-admin -d -p 6666:80  -e VG_BASE_URL=http://localhost:
 
 如果这些插件对你有帮助，可以给一个 star 支持下
 
-- [vite-plugin-mock](https://github.com/anncwb/vite-plugin-mock) - 用于本地及开发环境数据 mock
-- [vite-plugin-html](https://github.com/anncwb/vite-plugin-html) - 用于 html 模版转换及压缩
-- [vite-plugin-compression](https://github.com/anncwb/vite-plugin-compression) - 用于打包输出.gz|.brotil 文件
-- [vite-plugin-svg-icons](https://github.com/anncwb/vite-plugin-svg-icons) - 用于快速生成 svg 雪碧图
+- [vite-plugin-mock](https://github.com/DoverDee/vite-plugin-mock) - 用于本地及开发环境数据 mock
+- [vite-plugin-html](https://github.com/DoverDee/vite-plugin-html) - 用于 html 模版转换及压缩
+- [vite-plugin-compression](https://github.com/DoverDee/vite-plugin-compression) - 用于打包输出.gz|.brotil 文件
+- [vite-plugin-svg-icons](https://github.com/DoverDee/vite-plugin-svg-icons) - 用于快速生成 svg 雪碧图
 
 ## 后台整合示例
 
@@ -169,7 +169,7 @@ docker run --name vue-vben-admin -d -p 6666:80  -e VG_BASE_URL=http://localhost:
 
 ## 维护者
 
-[@Vben](https://github.com/anncwb) [@Jinmao](https://github.com/jinmao88)
+[@Vben](https://github.com/DoverDee) [@Jinmao](https://github.com/jinmao88)
 
 ## 感谢
 
@@ -183,7 +183,7 @@ docker run --name vue-vben-admin -d -p 6666:80  -e VG_BASE_URL=http://localhost:
 
 ## Star 历史
 
-[![Star History Chart](https://api.star-history.com/svg?repos=vbenjs/vue-vben-admin&type=Date)](https://star-history.com/#vbenjs/vue-vben-admin&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=vbenjs/access-control&type=Date)](https://star-history.com/#vbenjs/access-control&Date)
 
 ## License
 
