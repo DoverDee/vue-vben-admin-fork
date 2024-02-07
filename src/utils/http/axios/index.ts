@@ -15,10 +15,11 @@ import { getToken } from '@/utils/auth';
 import { setObjToUrlParams, deepMerge } from '@/utils';
 import { useErrorLogStoreWithOut } from '@/store/modules/errorLog';
 import { useI18n } from '@/hooks/web/useI18n';
-import { joinTimestamp, formatRequestDate } from './helper';
+import { joinTimestamp, formatRequestDate, removeEmptyValueKey } from './helper';
 import { useAccountStoreWithOut } from '@/store/modules/account';
 import { AxiosRetry } from '@/utils/http/axios/axiosRetry';
 import axios from 'axios';
+import { snakeCase } from 'change-case';
 
 const globSetting = useGlobSetting();
 const urlPrefix = globSetting.urlPrefix;
@@ -72,28 +73,32 @@ const transform: AxiosTransform = {
 
     // 在此处根据自己项目的实际情况对不同的code执行不同的操作
     // 如果不希望中断当前请求，请return数据，否则直接抛出异常即可
-    let timeoutMsg = '';
+    let errorMsg = '';
+    const userStore = useAccountStoreWithOut();
     switch (code) {
+      case ResultEnum.TOKEN_EXPIRED:
+        errorMsg = t('sys.exception.backLogin');
+        userStore.logout(true);
+        break;
       case ResultEnum.TIMEOUT:
-        timeoutMsg = t('sys.api.timeoutMessage');
-        const userStore = useAccountStoreWithOut();
+        errorMsg = t('sys.api.timeoutMessage');
         userStore.logout(true);
         break;
       default:
         if (message) {
-          timeoutMsg = message;
+          errorMsg = message;
         }
     }
 
     // errorMessageMode='modal'的时候会显示modal错误弹窗，而不是消息提示，用于一些比较重要的错误
     // errorMessageMode='none' 一般是调用时明确表示不希望自动弹出错误提示
     if (options.errorMessageMode === 'modal') {
-      createErrorModal({ title: t('sys.api.errorTip'), content: timeoutMsg });
+      createErrorModal({ title: t('sys.api.errorTip'), content: errorMsg });
     } else if (options.errorMessageMode === 'message') {
-      createMessage.error(timeoutMsg);
+      createMessage.error(errorMsg);
     }
 
-    throw new Error(timeoutMsg || t('sys.api.apiRequestFailed'));
+    throw new Error(errorMsg || t('sys.api.apiRequestFailed'));
   },
 
   // 请求之前处理config
@@ -107,7 +112,8 @@ const transform: AxiosTransform = {
     if (apiUrl && isString(apiUrl)) {
       config.url = `${apiUrl}${config.url}`;
     }
-    const params = config.params || {};
+    // 如果携带了参数, 则将空值参数key移除
+    const params = config.params ? removeEmptyValueKey(config.params) : {};
     const data = config.data || false;
     formatDate && data && !isString(data) && formatRequestDate(data);
     if (config.method?.toUpperCase() === RequestEnum.GET) {
@@ -146,6 +152,11 @@ const transform: AxiosTransform = {
         config.params = undefined;
       }
     }
+
+    // 排序参数值转换 camelCase to snake_case, ascend -> asc, descend -> desc
+    if (params.field) params.field = snakeCase(params.field);
+    if (params.order) params.order = params.order.replace('end', '');
+
     return config;
   },
 
@@ -230,7 +241,7 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
         // authentication schemes，e.g: Bearer
         // authenticationScheme: 'Bearer',
         authenticationScheme: '',
-        timeout: 10 * 1000,
+        timeout: 60 * 1000,
         // 基础接口地址
         // baseURL: globSetting.apiUrl,
 
@@ -265,7 +276,7 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
           withToken: true,
           retryRequest: {
             isOpenRetry: true,
-            count: 5,
+            count: 2,
             waitTime: 100,
           },
         },
@@ -274,7 +285,9 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
     ),
   );
 }
-export const defHttp = createAxios();
+export const defHttp = createAxios({
+  headers: { terminal: 'control' },
+});
 
 // other api url
 // export const otherHttp = createAxios({

@@ -39,7 +39,7 @@
             <LoginForm />
             <ForgetPasswordForm />
             <RegisterForm />
-            <MobileForm />
+            <SmsLoginForm />
             <QrCodeForm />
           </div>
         </div>
@@ -56,7 +56,7 @@
   import { computed } from 'vue';
   import ForgetPasswordForm from './ForgetPasswordForm.vue';
   import LoginForm from './LoginForm.vue';
-  import MobileForm from './MobileForm.vue';
+  import SmsLoginForm from './SmsLoginForm.vue';
   import QrCodeForm from './QrCodeForm.vue';
   import RegisterForm from './RegisterForm.vue';
 

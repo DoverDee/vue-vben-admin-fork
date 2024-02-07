@@ -78,6 +78,7 @@
     "@zxcvbn-ts/core": "^3.0.4",
     "ant-design-vue": "^4.0.8",
     "axios": "^1.6.4",
+    "change-case": "^5.4.2",
     "codemirror": "^5.65.16",
     "cropperjs": "^1.6.1",
     "crypto-js": "^4.2.0",

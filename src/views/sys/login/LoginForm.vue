@@ -12,7 +12,7 @@
       <Input
         size="large"
         v-model:value="formData.account"
-        :placeholder="t('sys.login.userName')"
+        :placeholder="t('sys.login.user')"
         class="fix-auto-fill"
       />
     </FormItem>
@@ -54,8 +54,8 @@
     </FormItem>
     <ARow class="enter-x" :gutter="[16, 16]">
       <ACol :md="8" :xs="24">
-        <Button block @click="setLoginState(LoginStateEnum.MOBILE)">
-          {{ t('sys.login.mobileSignInFormTitle') }}
+        <Button block @click="setLoginState(LoginStateEnum.LOGIN_SMS)">
+          {{ t('sys.login.smsSignInFormTitle') }}
         </Button>
       </ACol>
       <ACol :md="8" :xs="24">
@@ -127,7 +127,7 @@
 
   //onKeyStroke('Enter', handleLogin);
 
-  const getShow = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN);
+  const getShow = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN_PSD);
 
   async function handleLogin() {
     const data = await validForm();

@@ -60,14 +60,14 @@
   },
   "login": {
     "backSignIn": "Back sign in",
-    "mobileSignInFormTitle": "Mobile sign in",
+    "smsSignInFormTitle": "Short message sign in",
     "qrSignInFormTitle": "Qr code sign in",
     "signInFormTitle": "Sign in",
     "signUpFormTitle": "Sign up",
     "forgetFormTitle": "Reset password",
     "signInTitle": "Backstage management system",
     "signInDesc": "Enter your personal details and get started!",
-    "policy": "I agree to the xxx Privacy Policy",
+    "policy": "I have read and agreed to apply",
     "scanSign": "scanning the code to complete the login",
     "loginButton": "Sign in",
     "registerButton": "Sign up",
@@ -87,6 +87,12 @@
     "confirmPassword": "Confirm Password",
     "email": "Email",
     "smsCode": "SMS code",
-    "mobile": "Mobile"
+    "mobile": "Mobile",
+    "user": "account, email, phone",
+    "emailError": "email error",
+    "mobileError": "phone number error",
+    "passwordNewSend": "new password send success",
+    "smsSendSuccess": "sms send success",
+    "smsSendError": "sms send error"
   }
 }

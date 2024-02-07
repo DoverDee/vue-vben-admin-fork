@@ -91,10 +91,10 @@ export const useAccountStore = defineStore({
       try {
         const { goHome = true, mode, ...loginParams } = params;
         const data = await loginApi(loginParams, mode);
-        const { token } = data;
-
-        // save token
-        this.setToken(token);
+        if (data && Reflect.has(data, 'tokenValue')) {
+          // save token
+          this.setToken(data['tokenValue']);
+        }
         return this.afterLoginAction(goHome);
       } catch (error) {
         return Promise.reject(error);

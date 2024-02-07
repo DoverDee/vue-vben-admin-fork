@@ -1,5 +1,5 @@
 <template>
-  <template v-if="getShow">
+  <div v-if="getShow">
     <LoginFormTitle class="enter-x" />
     <Form class="p-4 enter-x" :model="formData" :rules="getFormRules" ref="formRef">
       <FormItem name="emailPhone" class="enter-x">
@@ -24,6 +24,7 @@
       <FormItem name="smsCode" class="enter-x">
         <CountdownInput
           size="large"
+          class="fix-auto-fill"
           v-model:value="formData.smsCode"
           :count="300"
           :sendCodeApi="() => sendCodeHander()"
@@ -32,44 +33,47 @@
       </FormItem>
 
       <FormItem class="enter-x">
-        <Button type="primary" size="large" block @click="handleReset" :loading="loading">
-          {{ t('common.resetText') }}
+        <Button type="primary" size="large" block @click="handleLogin" :loading="loading">
+          {{ t('sys.login.loginButton') }}
         </Button>
         <Button size="large" block class="mt-4" @click="handleBackLogin">
           {{ t('sys.login.backSignIn') }}
         </Button>
       </FormItem>
     </Form>
-  </template>
+  </div>
 </template>
 <script lang="ts" setup>
   import { reactive, ref, computed, unref } from 'vue';
-  import LoginFormTitle from './LoginFormTitle.vue';
   import { Form, Input, Button, Select } from 'ant-design-vue';
   import { CountdownInput } from '@/components/CountDown';
+  import LoginFormTitle from './LoginFormTitle.vue';
   import { useI18n } from '@/hooks/web/useI18n';
-  import { useLoginState, useFormRules, LoginStateEnum, useFormValid } from './useLogin';
+  import { useLoginState, useFormRules, useFormValid, LoginStateEnum } from './useLogin';
   import { useMessage } from '@/hooks/web/useMessage';
   import { isValidPhone, isValidEmail } from '@/utils/validate';
-  import { SmsType, getPhoneSms, getEmailSms, resetPswd } from '@/api/sys/account';
+  import { getPhoneSms, getEmailSms, SmsType } from '@/api/sys/account';
+  import { useAccountStore } from '@/store/modules/account';
+  import { useDesign } from '@/hooks/web/useDesign';
 
   const FormItem = Form.Item;
   const { t } = useI18n();
   const { handleBackLogin, getLoginState } = useLoginState();
   const { getFormRules } = useFormRules();
+  const { createMessage, notification, createErrorModal } = useMessage();
 
   const formRef = ref();
   const loading = ref(false);
   const { validForm } = useFormValid(formRef);
-  const { createMessage } = useMessage();
+  const getShow = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN_SMS);
+  const accountStore = useAccountStore();
+  const { prefixCls } = useDesign('login');
 
   const formData = reactive({
     smsRoute: LoginStateEnum.EMAIL,
     emailPhone: '',
     smsCode: '',
   });
-
-  const getShow = computed(() => unref(getLoginState) === LoginStateEnum.RESET_PASSWORD);
 
   const emailPhonePlaceHolder = computed(() => {
     return formData.smsRoute === LoginStateEnum.EMAIL
@@ -80,16 +84,26 @@
   async function sendCodeHander() {
     if (formData.smsRoute === LoginStateEnum.EMAIL) {
       if (isValidEmail(formData.emailPhone)) {
-        await getEmailSms(formData.emailPhone, SmsType.RESET_PSWD);
-        return true;
+        const rste = await getEmailSms(formData.emailPhone, SmsType.LOGIN);
+        if (rste) {
+          createMessage.info(t('sys.login.smsSendSuccess'));
+          return true;
+        } else {
+          createMessage.error(t('sys.login.smsSendError'));
+        }
       } else {
         createMessage.error(t('sys.login.emailError'));
       }
     }
     if (formData.smsRoute === LoginStateEnum.MOBILE) {
       if (isValidPhone(formData.emailPhone)) {
-        await getPhoneSms(formData.emailPhone, SmsType.RESET_PSWD);
-        return true;
+        const rstp = await getPhoneSms(formData.emailPhone, SmsType.LOGIN);
+        if (rstp) {
+          createMessage.info(t('sys.login.smsSendSuccess'));
+          return true;
+        } else {
+          createMessage.error(t('sys.login.smsSendError'));
+        }
       } else {
         createMessage.error(t('sys.login.mobileError'));
       }
@@ -97,28 +111,31 @@
     return false;
   }
 
-  async function handleReset() {
+  async function handleLogin() {
     const data = await validForm();
     if (!data) return;
-    let rst: string;
-    // smsType=2 表示重置密码
-    if (formData.smsRoute === LoginStateEnum.EMAIL) {
-      rst = await resetPswd({
-        smsCode: formData.smsCode,
-        email: formData.emailPhone,
-        smsType: 2,
+    try {
+      loading.value = true;
+      const accountInfo = await accountStore.login({
+        smsCode: data.smsCode,
+        user: data.emailPhone,
+        mode: 'none', //不要默认的错误提示
       });
-    } else {
-      rst = await resetPswd({
-        smsCode: formData.smsCode,
-        phone: formData.emailPhone,
-        smsType: 2,
+      if (accountInfo) {
+        notification.success({
+          message: t('sys.login.loginSuccessTitle'),
+          description: `${t('sys.login.loginSuccessDesc')}: ${accountInfo.username}`,
+          duration: 3,
+        });
+      }
+    } catch (error) {
+      createErrorModal({
+        title: t('sys.api.errorTip'),
+        content: (error as unknown as Error).message || t('sys.api.networkExceptionMsg'),
+        getContainer: () => document.body.querySelector(`.${prefixCls}`) || document.body,
       });
-    }
-    if (rst) {
-      // 返回登录模块
-      handleBackLogin();
-      createMessage.info(t('sys.login.passwordNewSend'));
+    } finally {
+      loading.value = false;
     }
   }
 </script>

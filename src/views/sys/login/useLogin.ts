@@ -8,14 +8,16 @@ import { ref, computed, unref, Ref } from 'vue';
 import { useI18n } from '@/hooks/web/useI18n';
 
 export enum LoginStateEnum {
-  LOGIN,
   REGISTER,
   RESET_PASSWORD,
-  MOBILE,
+  LOGIN_PSD,
+  LOGIN_SMS,
   QR_CODE,
+  MOBILE,
+  EMAIL,
 }
 
-const currentState = ref(LoginStateEnum.LOGIN);
+const currentState = ref(LoginStateEnum.LOGIN_PSD);
 
 // 这里也可以优化
 // import { createGlobalState } from '@vueuse/core'
@@ -28,7 +30,7 @@ export function useLoginState() {
   const getLoginState = computed(() => currentState.value);
 
   function handleBackLogin() {
-    setLoginState(LoginStateEnum.LOGIN);
+    setLoginState(LoginStateEnum.LOGIN_PSD);
   }
 
   return { setLoginState, getLoginState, handleBackLogin };
@@ -105,7 +107,7 @@ export function useFormRules(formData?: Recordable) {
         };
 
       // mobile form rules
-      case LoginStateEnum.MOBILE:
+      case LoginStateEnum.LOGIN_SMS:
         return mobileRule;
 
       // login form rules
