@@ -89,6 +89,9 @@ declare global {
       [elem: string]: any;
     }
   }
+
+  // baidu map
+  declare const BMapGL: Nullable<T>;
 }
 
 declare module 'vue' {
