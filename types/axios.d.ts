@@ -35,11 +35,24 @@ export interface RetryRequest {
   count: number;
   waitTime: number;
 }
+
 export interface Result<T = any> {
   code: number;
   type: 'success' | 'error' | 'warning';
   message: string;
   result: T;
+}
+
+export interface PageModel<T> {
+  records: T[];
+  total: number;
+  current: number;
+  pages: number;
+}
+
+export interface PageParams {
+  page: number;
+  pageSize: number;
 }
 
 // multipart/form-data: upload file

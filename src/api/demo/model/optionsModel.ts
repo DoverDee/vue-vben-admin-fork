@@ -1,4 +1,4 @@
-import { BasicFetchResult } from '@/api/model/baseModel';
+import { PageModel } from '#/axios';
 
 export interface DemoOptionsItem {
   name: string;
@@ -12,4 +12,4 @@ export interface selectParams {
 /**
  * @description: Request list return value
  */
-export type DemoOptionsGetResultModel = BasicFetchResult<DemoOptionsItem>;
+export type DemoOptionsGetResultModel = PageModel<DemoOptionsItem>;

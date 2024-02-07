@@ -1,6 +1,6 @@
-import { BasicPageParams, BasicFetchResult } from '@/api/model/baseModel';
+import { PageParams, PageModel } from '#/axios';
 
-export type AccountParams = BasicPageParams & {
+export type AccountParams = PageParams & {
   account?: string;
   nickname?: string;
   [key: string]: any;
@@ -11,7 +11,7 @@ export type RoleParams = {
   status?: string;
 };
 
-export type RolePageParams = BasicPageParams & RoleParams;
+export type RolePageParams = PageParams & RoleParams;
 
 export type DeptParams = {
   deptName?: string;
@@ -64,12 +64,12 @@ export interface RoleListItem {
 /**
  * @description: Request list return value
  */
-export type AccountListGetResultModel = BasicFetchResult<AccountListItem>;
+export type AccountListGetResultModel = PageModel<AccountListItem>;
 
-export type DeptListGetResultModel = BasicFetchResult<DeptListItem>;
+export type DeptListGetResultModel = PageModel<DeptListItem>;
 
-export type MenuListGetResultModel = BasicFetchResult<MenuListItem>;
+export type MenuListGetResultModel = PageModel<MenuListItem>;
 
-export type RolePageListGetResultModel = BasicFetchResult<RoleListItem>;
+export type RolePageListGetResultModel = PageModel<RoleListItem>;
 
 export type RoleListGetResultModel = RoleListItem[];

@@ -31,6 +31,9 @@
     },
     height: 'auto',
     proxyConfig: {
+      props: {
+        result: 'records',
+      },
       ajax: {
         query: async ({ page, form }) => {
           return getAccountList({
