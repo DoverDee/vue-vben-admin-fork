@@ -3,7 +3,7 @@ import type { Router, RouteRecordRaw } from 'vue-router';
 import { usePermissionStoreWithOut } from '@/store/modules/permission';
 
 import { PageEnum } from '@/enums/pageEnum';
-import { useUserStoreWithOut } from '@/store/modules/user';
+import { useAccountStoreWithOut } from '@/store/modules/account';
 
 import { PAGE_NOT_FOUND_ROUTE } from '@/router/routes/basic';
 
@@ -16,16 +16,16 @@ const ROOT_PATH = RootRoute.path;
 const whitePathList: PageEnum[] = [LOGIN_PATH];
 
 export function createPermissionGuard(router: Router) {
-  const userStore = useUserStoreWithOut();
+  const userStore = useAccountStoreWithOut();
   const permissionStore = usePermissionStoreWithOut();
   router.beforeEach(async (to, from, next) => {
     if (
       from.path === ROOT_PATH &&
       to.path === PageEnum.BASE_HOME &&
-      userStore.getUserInfo.homePath &&
-      userStore.getUserInfo.homePath !== PageEnum.BASE_HOME
+      userStore.getAccountInfo.homePath &&
+      userStore.getAccountInfo.homePath !== PageEnum.BASE_HOME
     ) {
-      next(userStore.getUserInfo.homePath);
+      next(userStore.getAccountInfo.homePath);
       return;
     }
 
@@ -75,16 +75,16 @@ export function createPermissionGuard(router: Router) {
     if (
       from.path === LOGIN_PATH &&
       to.name === PAGE_NOT_FOUND_ROUTE.name &&
-      to.fullPath !== (userStore.getUserInfo.homePath || PageEnum.BASE_HOME)
+      to.fullPath !== (userStore.getAccountInfo.homePath || PageEnum.BASE_HOME)
     ) {
-      next(userStore.getUserInfo.homePath || PageEnum.BASE_HOME);
+      next(userStore.getAccountInfo.homePath || PageEnum.BASE_HOME);
       return;
     }
 
     // get userinfo while last fetch time is empty
     if (userStore.getLastUpdateTime === 0) {
       try {
-        await userStore.getUserInfoAction();
+        await userStore.getAccountInfoAction();
       } catch (err) {
         next();
         return;

@@ -63,9 +63,9 @@
 
   import headerImg from '@/assets/images/header.jpg';
   import { tags, teams, details, achieveList } from './data';
-  import { useUserStore } from '@/store/modules/user';
+  import { useAccountStore } from '@/store/modules/account';
 
-  const userStore = useUserStore();
+  const userStore = useAccountStore();
   const TabPane = Tabs.TabPane;
   const tabs = {
     Article,
@@ -73,7 +73,7 @@
     Project,
   };
   const prefixCls = 'account-center';
-  const avatar = computed(() => userStore.getUserInfo.avatar || headerImg);
+  const avatar = computed(() => userStore.getAccountInfo.avatar || headerImg);
 </script>
 <style lang="less" scoped>
   .account-center {

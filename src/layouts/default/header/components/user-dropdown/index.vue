@@ -46,7 +46,7 @@
   import type { MenuInfo } from 'ant-design-vue/lib/menu/src/interface';
   import { computed } from 'vue';
   import { DOC_URL } from '@/settings/siteSetting';
-  import { useUserStore } from '@/store/modules/user';
+  import { useAccountStore } from '@/store/modules/account';
   import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
   import { useI18n } from '@/hooks/web/useI18n';
   import { useDesign } from '@/hooks/web/useDesign';
@@ -71,10 +71,10 @@
   const { prefixCls } = useDesign('header-user-dropdown');
   const { t } = useI18n();
   const { getShowDoc, getUseLockPage, getShowApi } = useHeaderSetting();
-  const userStore = useUserStore();
+  const userStore = useAccountStore();
 
   const getUserInfo = computed(() => {
-    const { realName = '', avatar, desc } = userStore.getUserInfo || {};
+    const { realName = '', avatar, desc } = userStore.getAccountInfo || {};
     return { realName, avatar: avatar || headerImg, desc };
   });
 

@@ -25,7 +25,7 @@
 <script lang="ts" setup>
   import { computed } from 'vue';
   import { usePermission } from '@/hooks/web/usePermission';
-  import { useUserStore } from '@/store/modules/user';
+  import { useAccountStore } from '@/store/modules/account';
   import { PageWrapper } from '@/components/Page';
   import { PermissionModeEnum } from '@/enums/appEnum';
   import { useAppStore } from '@/store/modules/app';
@@ -33,7 +33,7 @@
   import CurrentPermissionMode from '../CurrentPermissionMode.vue';
 
   const { refreshMenu } = usePermission();
-  const userStore = useUserStore();
+  const userStore = useAccountStore();
   const appStore = useAppStore();
 
   const isBackPermissionMode = computed(
@@ -46,7 +46,7 @@
     userStore.setToken(token);
 
     // 重新获取用户信息和菜单
-    userStore.getUserInfoAction();
+    userStore.getAccountInfoAction();
     refreshMenu();
   }
 </script>

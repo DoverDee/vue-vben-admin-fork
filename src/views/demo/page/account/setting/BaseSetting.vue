@@ -33,11 +33,11 @@
   import headerImg from '@/assets/images/header.jpg';
   import { accountInfoApi } from '@/api/demo/account';
   import { baseSetschemas } from './data';
-  import { useUserStore } from '@/store/modules/user';
+  import { useAccountStore } from '@/store/modules/account';
   import { uploadApi } from '@/api/sys/upload';
 
   const { createMessage } = useMessage();
-  const userStore = useUserStore();
+  const userStore = useAccountStore();
 
   const [register, { setFieldsValue }] = useForm({
     labelWidth: 120,
@@ -51,15 +51,15 @@
   });
 
   const avatar = computed(() => {
-    const { avatar } = userStore.getUserInfo;
+    const { avatar } = userStore.getAccountInfo;
     console.log(avatar);
     return avatar || headerImg;
   });
 
   function updateAvatar({ src, data }) {
-    const userinfo = userStore.getUserInfo;
+    const userinfo = userStore.getAccountInfo;
     userinfo.avatar = src;
-    userStore.setUserInfo(userinfo);
+    userStore.setAccountInfo(userinfo);
     console.log('data', data);
   }
 

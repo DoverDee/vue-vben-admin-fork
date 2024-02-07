@@ -16,7 +16,7 @@
 </template>
 <script lang="ts" setup>
   import { PageWrapper } from '@/components/Page';
-  import { useUserStore } from '@/store/modules/user';
+  import { useAccountStore } from '@/store/modules/account';
   import { sessionTimeoutApi, tokenExpiredApi } from '@/api/demo/account';
   import { Card } from 'ant-design-vue';
 
@@ -24,7 +24,7 @@
 
   const CardGrid = Card.Grid;
 
-  const userStore = useUserStore();
+  const userStore = useAccountStore();
   async function test1() {
     // 示例网站生产环境用的是mock数据，不能返回Http状态码，
     // 所以在生产环境直接改变状态来达到测试效果

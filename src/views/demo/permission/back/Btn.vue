@@ -67,12 +67,12 @@
   import { PermissionModeEnum } from '@/enums/appEnum';
   import { PageWrapper } from '@/components/Page';
   import { useAppStore } from '@/store/modules/app';
-  import { useUserStore } from '@/store/modules/user';
+  import { useAccountStore } from '@/store/modules/account';
 
   const { hasPermission } = usePermission();
   const permissionStore = usePermissionStore();
   const appStore = useAppStore();
-  const userStore = useUserStore();
+  const userStore = useAccountStore();
 
   const isBackPermissionMode = computed(
     () => appStore.getProjectConfig.permissionMode === PermissionModeEnum.BACK,
@@ -84,7 +84,7 @@
     userStore.setToken(token);
 
     // 重新获取用户信息和菜单
-    userStore.getUserInfoAction();
+    userStore.getAccountInfoAction();
     permissionStore.changePermissionCode();
   }
 </script>

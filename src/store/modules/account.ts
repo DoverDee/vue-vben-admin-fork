@@ -1,4 +1,4 @@
-import type { UserInfo } from '#/store';
+import type { AccountInfo } from '#/store';
 import type { ErrorMessageMode } from '#/axios';
 import { defineStore } from 'pinia';
 import { store } from '@/store';
@@ -6,8 +6,8 @@ import { RoleEnum } from '@/enums/roleEnum';
 import { PageEnum } from '@/enums/pageEnum';
 import { ROLES_KEY, TOKEN_KEY, USER_INFO_KEY } from '@/enums/cacheEnum';
 import { getAuthCache, setAuthCache } from '@/utils/auth';
-import { GetUserInfoModel, LoginParams } from '@/api/sys/model/userModel';
-import { doLogout, getUserInfo, loginApi } from '@/api/sys/user';
+import { LoginParams } from '@/api/sys/model/accountModel';
+import { doLogout, getAccountInfo, loginApi } from '@/api/sys/account';
 import { useI18n } from '@/hooks/web/useI18n';
 import { useMessage } from '@/hooks/web/useMessage';
 import { router } from '@/router';
@@ -17,19 +17,19 @@ import { PAGE_NOT_FOUND_ROUTE } from '@/router/routes/basic';
 import { isArray } from '@/utils/is';
 import { h } from 'vue';
 
-interface UserState {
-  userInfo: Nullable<UserInfo>;
+interface AccountState {
+  accountInfo: Nullable<AccountInfo>;
   token?: string;
   roleList: RoleEnum[];
   sessionTimeout?: boolean;
   lastUpdateTime: number;
 }
 
-export const useUserStore = defineStore({
+export const useAccountStore = defineStore({
   id: 'app-user',
-  state: (): UserState => ({
+  state: (): AccountState => ({
     // user info
-    userInfo: null,
+    accountInfo: null,
     // token
     token: undefined,
     // roleList
@@ -40,8 +40,8 @@ export const useUserStore = defineStore({
     lastUpdateTime: 0,
   }),
   getters: {
-    getUserInfo(state): UserInfo {
-      return state.userInfo || getAuthCache<UserInfo>(USER_INFO_KEY) || {};
+    getAccountInfo(state): AccountInfo {
+      return state.accountInfo || getAuthCache<AccountInfo>(USER_INFO_KEY) || {};
     },
     getToken(state): string {
       return state.token || getAuthCache<string>(TOKEN_KEY);
@@ -65,8 +65,8 @@ export const useUserStore = defineStore({
       this.roleList = roleList;
       setAuthCache(ROLES_KEY, roleList);
     },
-    setUserInfo(info: UserInfo | null) {
-      this.userInfo = info;
+    setAccountInfo(info: AccountInfo | null) {
+      this.accountInfo = info;
       this.lastUpdateTime = new Date().getTime();
       setAuthCache(USER_INFO_KEY, info);
     },
@@ -74,7 +74,7 @@ export const useUserStore = defineStore({
       this.sessionTimeout = flag;
     },
     resetState() {
-      this.userInfo = null;
+      this.accountInfo = null;
       this.token = '';
       this.roleList = [];
       this.sessionTimeout = false;
@@ -87,7 +87,7 @@ export const useUserStore = defineStore({
         goHome?: boolean;
         mode?: ErrorMessageMode;
       },
-    ): Promise<GetUserInfoModel | null> {
+    ): Promise<AccountInfo | null> {
       try {
         const { goHome = true, mode, ...loginParams } = params;
         const data = await loginApi(loginParams, mode);
@@ -100,10 +100,10 @@ export const useUserStore = defineStore({
         return Promise.reject(error);
       }
     },
-    async afterLoginAction(goHome?: boolean): Promise<GetUserInfoModel | null> {
+    async afterLoginAction(goHome?: boolean): Promise<AccountInfo | null> {
       if (!this.getToken) return null;
       // get user info
-      const userInfo = await this.getUserInfoAction();
+      const userInfo = await this.getAccountInfoAction();
 
       const sessionTimeout = this.sessionTimeout;
       if (sessionTimeout) {
@@ -122,9 +122,9 @@ export const useUserStore = defineStore({
       }
       return userInfo;
     },
-    async getUserInfoAction(): Promise<UserInfo | null> {
+    async getAccountInfoAction(): Promise<AccountInfo | null> {
       if (!this.getToken) return null;
-      const userInfo = await getUserInfo();
+      const userInfo = await getAccountInfo();
       const { roles = [] } = userInfo;
       if (isArray(roles)) {
         const roleList = roles.map((item) => item.value) as RoleEnum[];
@@ -133,7 +133,7 @@ export const useUserStore = defineStore({
         userInfo.roles = [];
         this.setRoleList([]);
       }
-      this.setUserInfo(userInfo);
+      this.setAccountInfo(userInfo);
       return userInfo;
     },
     /**
@@ -149,7 +149,7 @@ export const useUserStore = defineStore({
       }
       this.setToken(undefined);
       this.setSessionTimeout(false);
-      this.setUserInfo(null);
+      this.setAccountInfo(null);
       goLogin && router.push(PageEnum.BASE_LOGIN);
     },
 
@@ -172,6 +172,6 @@ export const useUserStore = defineStore({
 });
 
 // Need to be used outside the setup
-export function useUserStoreWithOut() {
-  return useUserStore(store);
+export function useAccountStoreWithOut() {
+  return useAccountStore(store);
 }

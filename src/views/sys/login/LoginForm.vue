@@ -97,7 +97,7 @@
   import { useI18n } from '@/hooks/web/useI18n';
   import { useMessage } from '@/hooks/web/useMessage';
 
-  import { useUserStore } from '@/store/modules/user';
+  import { useAccountStore } from '@/store/modules/account';
   import { LoginStateEnum, useLoginState, useFormRules, useFormValid } from './useLogin';
   import { useDesign } from '@/hooks/web/useDesign';
   //import { onKeyStroke } from '@vueuse/core';
@@ -109,7 +109,7 @@
   const { t } = useI18n();
   const { notification, createErrorModal } = useMessage();
   const { prefixCls } = useDesign('login');
-  const userStore = useUserStore();
+  const userStore = useAccountStore();
 
   const { setLoginState, getLoginState } = useLoginState();
   const { getFormRules } = useFormRules();

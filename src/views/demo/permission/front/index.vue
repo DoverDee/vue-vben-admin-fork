@@ -28,14 +28,14 @@
 <script lang="ts" setup>
   import { computed } from 'vue';
   import { Alert, Space } from 'ant-design-vue';
-  import { useUserStore } from '@/store/modules/user';
+  import { useAccountStore } from '@/store/modules/account';
   import { RoleEnum } from '@/enums/roleEnum';
   import { usePermission } from '@/hooks/web/usePermission';
   import { PageWrapper } from '@/components/Page';
   import CurrentPermissionMode from '../CurrentPermissionMode.vue';
 
   const { changeRole } = usePermission();
-  const userStore = useUserStore();
+  const userStore = useAccountStore();
 
   const isSuper = computed(() => userStore.getRoleList.includes(RoleEnum.SUPER));
   const isTest = computed(() => userStore.getRoleList.includes(RoleEnum.TEST));
