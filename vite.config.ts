@@ -24,6 +24,12 @@ export default defineApplicationConfig({
           // only https
           // secure: false
         },
+        '/file-upload': {
+          target: 'http://localhost:3000/ac/sys/file/upload',
+          changeOrigin: true,
+          ws: true,
+          rewrite: (path) => path.replace(new RegExp(`^/file-upload`), ''),
+        },
         '/upload': {
           target: 'http://localhost:3000/ac/file/upload',
           changeOrigin: true,

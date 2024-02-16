@@ -55,7 +55,7 @@
   // hooks
   import { useUploadType } from '../hooks/useUpload';
   import { useMessage } from '@/hooks/web/useMessage';
-  //   types
+  // types
   import { FileItem, UploadResultStatus } from '../types/typing';
   import { basicProps } from '../props';
   import { createTableColumns, createActionColumn } from './data';
@@ -177,9 +177,10 @@
         {
           data: {
             ...(props.uploadParams || {}),
+            type: props.type,
+            relativePath: props.path,
           },
           file: item.file,
-          name: props.name,
           filename: props.filename,
         },
         function onUploadProgress(progressEvent: ProgressEvent) {

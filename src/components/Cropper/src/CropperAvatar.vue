@@ -62,7 +62,7 @@
     },
     checkMaxSize: { type: Number, default: 2 },
     type: { type: String, default: 'image' },
-    path: { type: String, default: 'image/avatar' },
+    path: { type: String, default: 'image/avatar/' },
   });
 
   const emit = defineEmits(['update:value', 'change']);

@@ -160,9 +160,10 @@
       const res = await props.api?.({
         data: {
           ...(props.uploadParams || {}),
+          type: props.type,
+          relativePath: props.path,
         },
         file: info.file,
-        name: props.name,
         filename: props.filename,
       });
       info.onSuccess!(res.data);

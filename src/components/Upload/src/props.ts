@@ -52,13 +52,17 @@ export const basicProps = {
     default: null,
     required: true,
   },
-  name: {
-    type: String as PropType<string>,
-    default: 'file',
-  },
   filename: {
     type: String as PropType<string>,
     default: null,
+  },
+  type: {
+    type: String as PropType<string>,
+    default: 'file',
+  },
+  path: {
+    type: String as PropType<string>,
+    default: 'file/',
   },
   fileListOpenDrag: {
     type: Boolean,
