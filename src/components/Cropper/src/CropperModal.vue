@@ -204,7 +204,7 @@
           filename,
           data: {
             type: props.type,
-            path: props.path,
+            relativePath: props.path,
           },
         });
         if (data.code !== ResultEnum.SUCCESS || !data.result) {
