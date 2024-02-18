@@ -16,6 +16,10 @@ type SortableOptions = Merge<
 type ListType = 'text' | 'picture' | 'picture-card';
 
 export const basicProps = {
+  disabled: {
+    type: Boolean as PropType<boolean>,
+    default: false,
+  },
   listType: {
     type: String as PropType<ListType>,
     default: 'picture-card',
