@@ -78,11 +78,12 @@ const transform: AxiosTransform = {
     switch (code) {
       case ResultEnum.TOKEN_EXPIRED:
         errorMsg = t('sys.exception.backLogin');
-        userStore.logout(true);
+        userStore.logout(false);
         break;
       case ResultEnum.TIMEOUT:
         errorMsg = t('sys.api.timeoutMessage');
-        userStore.logout(true);
+        // 被动登出，带redirect地址
+        userStore.logout(false);
         break;
       default:
         if (message) {
