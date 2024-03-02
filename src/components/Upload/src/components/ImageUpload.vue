@@ -7,6 +7,7 @@
       :accept="getStringAccept"
       :multiple="multiple"
       :maxCount="maxNumber"
+      :disabled="disabled"
       :before-upload="beforeUpload"
       :custom-request="customRequest"
       @preview="handlePreview"
@@ -46,7 +47,7 @@
   });
   const { t } = useI18n();
   const { createMessage } = useMessage();
-  const { accept, helpText, maxNumber, maxSize } = toRefs(props);
+  const { accept, helpText, maxNumber, maxSize, disabled } = toRefs(props);
   const isInnerOperate = ref<boolean>(false);
   const { getStringAccept } = useUploadType({
     acceptRef: accept,
