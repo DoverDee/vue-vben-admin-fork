@@ -1,7 +1,12 @@
 <template>
   <div>
     <Space>
-      <a-button type="primary" @click="openUploadModal" preIcon="carbon:cloud-upload">
+      <a-button
+        type="primary"
+        @click="openUploadModal"
+        :disabled="disabled"
+        preIcon="carbon:cloud-upload"
+      >
         {{ t('component.upload.upload') }}
       </a-button>
       <Tooltip placement="bottom" v-if="showPreview">
@@ -65,6 +70,8 @@
   const [registerPreviewModal, { openModal: openPreviewModal }] = useModal();
 
   const fileList = ref<string[]>([]);
+
+  const disabled = computed(() => props.disabled);
 
   const showPreview = computed(() => {
     const { emptyHidePreview } = props;

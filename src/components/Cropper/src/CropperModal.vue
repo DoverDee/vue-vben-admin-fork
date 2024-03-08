@@ -162,7 +162,7 @@
       emit('uploadError', {
         msg: t('component.cropper.imageMaxSize', [props.checkMaxSize]),
       });
-      return;
+      return false;
     }
     const reader = new FileReader();
     reader.readAsDataURL(file);
