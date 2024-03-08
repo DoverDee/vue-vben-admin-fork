@@ -17,21 +17,21 @@ export default defineApplicationConfig({
     server: {
       proxy: {
         '/basic-api': {
-          target: 'http://localhost:3000',
+          target: 'http://localhost:3000/ac',
           changeOrigin: true,
           ws: true,
           rewrite: (path) => path.replace(new RegExp(`^/basic-api`), ''),
           // only https
           // secure: false
         },
-        '/file-upload': {
+        '/api/sys/file/upload': {
           target: 'http://localhost:3000/ac/sys/file/upload',
           changeOrigin: true,
           ws: true,
-          rewrite: (path) => path.replace(new RegExp(`^/file-upload`), ''),
+          rewrite: (path) => path.replace(new RegExp(`^/api/sys/file/upload`), ''),
         },
         '/upload': {
-          target: 'http://localhost:3300/upload',
+          target: 'http://localhost:3000/ac/file/sys/upload',
           changeOrigin: true,
           ws: true,
           rewrite: (path) => path.replace(new RegExp(`^/upload`), ''),
