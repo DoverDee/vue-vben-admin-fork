@@ -54,6 +54,9 @@ export function formatRequestDate(params: Recordable) {
 // Convert image realtive path to url
 export const getImageUrl = (relaPath: string | undefined) => {
   return relaPath
-    ? globSetting.apiUrl + '/' + projectSetting.staticFileDirBackend + '/' + relaPath
+    ? (globSetting.urlPrefix ? globSetting.urlPrefix + '/' : '') +
+        (globSetting.apiUrl ? globSetting.apiUrl + '/' : '') +
+        (projectSetting.staticFileDirBackend ? projectSetting.staticFileDirBackend + '/' : '') +
+        relaPath
     : '';
 };
