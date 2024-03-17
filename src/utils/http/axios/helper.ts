@@ -51,12 +51,16 @@ export function formatRequestDate(params: Recordable) {
   }
 }
 
+// Get image realtive url prefix
+export const getImageUrlPrefix = () => {
+  return (
+    (globSetting.urlPrefix ? globSetting.urlPrefix + '/' : '') +
+    (globSetting.apiUrl ? globSetting.apiUrl + '/' : '') +
+    (projectSetting.staticFileDirBackend ? projectSetting.staticFileDirBackend + '/' : '')
+  );
+};
+
 // Convert image realtive path to url
 export const getImageUrl = (relaPath: string | undefined) => {
-  return relaPath
-    ? (globSetting.urlPrefix ? globSetting.urlPrefix + '/' : '') +
-        (globSetting.apiUrl ? globSetting.apiUrl + '/' : '') +
-        (projectSetting.staticFileDirBackend ? projectSetting.staticFileDirBackend + '/' : '') +
-        relaPath
-    : '';
+  return relaPath ? getImageUrlPrefix() + relaPath : '';
 };
