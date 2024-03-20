@@ -46,6 +46,24 @@
       </div>
     </div>
   </div>
+
+  <div class="footer">
+    <span
+      class="footer-text footer-left"
+      :title="`For questions and suggestions, please contact: ${email}`"
+    >
+      For questions and suggestions, please contact: <a :href="`mailto: ${email}`">{{ email }}</a>
+    </span>
+    <span
+      class="footer-text footer-right"
+      :title="`Copyright© All Rights Reserved ${new Date().getFullYear()} Youai qubangta ${bah}`"
+    >
+      <span class="copyright"
+        >Copyright© All Rights Reserved {{ new Date().getFullYear() }} Youai qubangta</span
+      >&nbsp;&nbsp;
+      <a href="https://beian.miit.gov.cn/" target="_blank">{{ bah }}</a>
+    </span>
+  </div>
 </template>
 <script lang="ts" setup>
   import { AppDarkModeToggle, AppLocalePicker, AppLogo } from '@/components/Application';
@@ -66,6 +84,8 @@
     },
   });
 
+  const bah = '鄂ICP备2024032766号-1';
+  const email = 'doverlee@foxmail.com';
   const globSetting = useGlobSetting();
   const { prefixCls } = useDesign('login');
   const { t } = useI18n();
@@ -207,6 +227,45 @@
 
     .@{countdown-prefix-cls} input {
       min-width: unset;
+    }
+  }
+
+  .footer {
+    display: flex;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    justify-content: space-between;
+    width: calc(100% - 80px);
+    height: 0.14rem;
+    padding: 16px 40px;
+    font-size: 12px;
+    line-height: 0.14rem;
+
+    .footer-text {
+      display: inline-block;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      .copyright {
+        padding-right: 8px;
+      }
+    }
+
+    .footer-left {
+      color: white;
+
+      a {
+        color: white;
+      }
+    }
+
+    .footer-right {
+      color: black;
+
+      a {
+        color: black;
+      }
     }
   }
 </style>
