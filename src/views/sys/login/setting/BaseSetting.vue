@@ -37,7 +37,7 @@
   import { useMessage } from '@/hooks/web/useMessage';
   import headerImg from '@/assets/images/header.jpg';
 
-  import LocationModal from './LocationModal.vue';
+  import { LocationModal } from '@/components/Map/index';
   import { useModal } from '@/components/Modal';
   import { baseSetschemas } from './data';
   import { useAccountStore } from '@/store/modules/account';
@@ -58,6 +58,7 @@
 
   function handleModelEdit(model: any) {
     openModal(true, {
+      title: '选择常驻位置',
       addr: model.location,
       lng: model.longitude,
       lat: model.latitude,
