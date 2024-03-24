@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref, onMounted } from 'vue';
+  import { ref, onMounted, watch } from 'vue';
   import loadMap from './map.js';
 
   defineOptions({ name: 'LocationBMapGL' });
@@ -39,6 +39,17 @@
     initMap();
   });
 
+  watch(props, () => {
+    if (map.value) {
+      // 回显点(先删除全部后新增)
+      map.value.clearOverlays();
+      let marker = new BMapGL.Marker(new BMapGL.Point(props.lng, props.lat));
+      map.value.addOverlay(marker);
+      // 回显位置
+      address.value = props.addr;
+    }
+  });
+
   function initMap() {
     // 调用map.js中loadMap()方法，引入百度地图脚本
     loadMap().then((BMapGL: any) => {
@@ -58,7 +69,7 @@
 
       // 监听单击事件
       map.value.addEventListener('click', (e) => {
-        // 清除点(所以覆盖物)
+        // 清除点(先删除全部后新增)
         map.value.clearOverlays();
         // 增加点
         let point = e.latlng;

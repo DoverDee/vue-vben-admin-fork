@@ -2,8 +2,8 @@
   <BasicModal
     v-bind="$attrs"
     @register="registerModal"
-    width="928px"
-    title="选择位置"
+    :width="width"
+    :title="title"
     @ok="handleSubmit"
   >
     <div class="mapMode">
@@ -19,6 +19,19 @@
   defineOptions({ name: 'LocationModal' });
   const emit = defineEmits(['success', 'register']);
 
+  // const props = defineProps({
+  //   title: { type: String, default: '选择位置' },
+  //   width: { type: [String, Number], default: '928px' },
+  //   ok: {
+  //     type: Function as PropType<() => Promise<any>>,
+  //   },
+  //   addr: { type: String },
+  //   lng: { type: String },
+  //   lat: { type: String },
+  // });
+
+  const title = ref<string>();
+  const width = ref<string>();
   const addr = ref<string>();
   const lng = ref<string>();
   const lat = ref<string>();
@@ -26,7 +39,9 @@
 
   const [registerModal, { setModalProps, closeModal }] = useModalInner((data) => {
     setModalProps({ confirmLoading: false });
-    addr.value = data.addr || undefined;
+    title.value = data.title || '选择位置';
+    width.value = data.width || '928px';
+    addr.value = data.addr || '';
     lng.value = data.lng || undefined;
     lat.value = data.lat || undefined;
   });
